@@ -7,6 +7,7 @@
 
 @import "reset";
 @import "variables";
+
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
@@ -18,8 +19,8 @@ html {
 }
 
 body {
-	background: $white;
-  font: 18px/1.4 $helvetica;
+	background: $bgColor;
+  font: 18px/1.4 $headerFont;
   color: $darkGray;
 }
 
@@ -31,12 +32,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
+  font-family: $bodyFont;
   color: $darkerGray;
   font-weight: bold;
 
-  line-height: 1.7;
-  margin: 1em 0 15px;
+  margin: 5px 0;
   padding: 0;
 
   @include mobile {
@@ -45,17 +45,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 24px;
+  font-weight: bold;
   a {
     color: inherit;
   }
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 16px;
 }
 
 h3 {
+  margin: 15px 0 0 0;
   font-size: 20px;
 }
 
@@ -65,7 +67,7 @@ h4 {
 }
 
 p {
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 a {
@@ -118,6 +120,8 @@ img {
 .date {
   font-style: italic;
   color: $gray;
+  padding: 10px 0;
+  font-size: 16px;
 }
 
 // Specify the color of the selection
@@ -151,11 +155,11 @@ img {
 //
 
 .wrapper-masthead {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .masthead {
-  padding: 20px 0;
+  padding: 0;
   border-bottom: 1px solid $lightGray;
 
   @include mobile {
@@ -191,12 +195,13 @@ img {
 }
 
 .site-name {
-  margin: 0;
+  margin: 5px 0;
   color: $darkGray;
   cursor: pointer;
-  font-family: $helveticaNeue;
+  font-family: $bodyFont;
   font-weight: 300;
-  font-size: 28px;
+  padding: 10px 0;
+  font-size: 18px;
   letter-spacing: 1px;
 }
 
@@ -212,8 +217,7 @@ img {
 
 nav {
   float: right;
-  margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
+  font-family: $bodyFont;
   font-size: 18px;
 
   @include mobile {
@@ -240,7 +244,9 @@ nav {
 //
 // .main
 //
-
+.post-list {
+  font-size: 16px;
+}
 .posts > .post {
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
@@ -273,12 +279,11 @@ nav {
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
   background-color: $lightGray;
 }
 
 footer {
+  font-size: 16px;
   padding: 20px 0;
   text-align: center;
 }
@@ -286,4 +291,3 @@ footer {
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
-@import "svg-icons";

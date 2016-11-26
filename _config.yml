@@ -3,13 +3,14 @@
 #
 
 # Name of your site (displayed in the header)
-name: Your Name
+name: Dian Jin
+username: dianjin
 
 # Short bio or description (displayed in the header)
-description: Web Developer from Somewhere
+description:
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
+avatar: https://avatars2.githubusercontent.com/u/7786116?v=3&u=4feda07a19e83884e34ed7c193e49bc488aa07b4&s=400
 
 #
 # Flags below are optional
