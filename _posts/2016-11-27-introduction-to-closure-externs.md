@@ -3,9 +3,7 @@ layout: post
 title: What are externs, and should you care?
 ---
 
-For better or worse, the word "externs" has made its way into my radar. The first time I heard it used was when a coworker was explaining why Closure made it difficult to introduce React and other third party JS libraries. The second time I saw it used was when I was investigating how to use third party JS libraries in Clojurescript.
-
-Anyway, I gleaned that externs were related to the [Google Closure compiler](https://github.com/google/closure-compiler), and tried to figure out why they kept coming up in conversation.
+For better or worse, the word "externs" has made its way into my radar. Given context clues, I gleaned that externs were related to the [Google Closure compiler](https://github.com/google/closure-compiler), and tried to figure out why they kept coming up in conversation.
 
 *Disclaimer: I have never worked with the Closure compiler in production and I have limited professional Javascript experience. I just happen to be curious about the Closure compiler and Javascript technologies in general.*
 
@@ -17,21 +15,21 @@ However, I discovered that Google's Closure compiler shouldn't be thought of as 
 ### What kind of code does Closure compile?
 Short answer: ES5 Javascript with some ES6 support.
 
-Long answer: ES5 Javascript with some ES6 support, but depending on the compilation mode selected, your program won't work if you engage in the practices listed [here](https://developers.google.com/closure/compiler/docs/limitations). In whitespace mode or simple mode, Closure basically compiles ES5 JS. But in advanced mode operating within a browser environment, the Closure compiler compiles ES5 JS with some important constraints.
+Long answer: ES5 Javascript with some ES6 support, but depending on the compilation mode selected, your program won't work if you engage in the practices listed [here](https://developers.google.com/closure/compiler/docs/limitations). In whitespace mode or simple mode, Closure basically compiles ES5 JS. But in advanced mode operating within a browser environment, the Closure compiler compiles ES5 JS with some important restrictions.
 
 ### Why do people use Closure?
 
-The Closure compiler offers three compilation modes: `WHITESPACE_ONLY`, `SIMPLE_OPTIMIZATIONS`, and `ADVANCED_OPTIMIZATIONS`. The `ADVANCED_OPTIMIZATIONS` mode can drastically reduce the size of a JS application because it renames global variables, function names, and properties. It also removes code that is provably unreachable, which means the output JS only contains functions and code that you're actually using.
+Closure offers three compilation modes: `WHITESPACE_ONLY`, `SIMPLE_OPTIMIZATIONS`, and `ADVANCED_OPTIMIZATIONS`. The `ADVANCED_OPTIMIZATIONS` mode can drastically reduce the size of a JS application because it renames global variables, function names, and properties. It also removes code that is provably unreachable, which means the output JS only contains functions and code that you're actually using.
 
 Websites are interested in reducing the size of their JS because that way, they can be delivered to the client and parsed faster. The faster JS is loaded, the faster a website become interactive.
 
-Nowadays, many people use [Uglify](https://github.com/mishoo/UglifyJS) to minify their ES5 Javascript. But Closure, a mature Java beast maintained by Google, [produces JS files that are significantly smaller than that of its competitors](https://nolanlawson.com/2016/08/15/the-cost-of-small-modules/) (in advanced mode).
+Nowadays, many people use [Uglify](https://github.com/mishoo/UglifyJS) to minify their ES5 Javascript. But Closure, a mature Java application maintained by Google, [produces JS files that are significantly smaller than that of its competitors](https://nolanlawson.com/2016/08/15/the-cost-of-small-modules/) (in advanced mode).
 
 ### What's the catch? Why doesn't everyone use Closure?
 
-There's no point in using Closure unless you take advantage of the optimizations offered in advanced mode. However, there's no point in incurring the mental overhead of writing Closure-advanced-mode-friendly code and introducing a compilation stage to your build pipeline and dev environment unless your Javascript app is big and could use the significant file size savings promised by Closure.
+There's no point in using Closure unless you take advantage of the optimizations offered in advanced mode. However, there's no point in incurring the mental overhead of writing advanced-mode-friendly code and introducing a compilation stage to your build pipeline unless your Javascript app is big and could use the significant file size savings promised by Closure.
 
-**The key thing to remember:** The Closure compiler is only able to apply massive optimizations to JS written with the specific constraints it demands in advanced mode. So, the higher percent of advanced-mode-compatible code in a Closure project, the more savings there are to be had.
+**The key thing to remember:** Closure is only able to apply massive optimizations to JS written with the specific constraints it demands in advanced mode. So, the higher percent of advanced-mode-friendly code in a Closure project, the more savings there are to be had.
 
 Google knows that Closure is used by websites to output small JS for browsers. Thus, it created the Google Closure library, a collection of bread and butter JS libraries *designed to be integrated with Closure projects using advanced compilation mode*. In other words, the Google Closure library follows all the rules necessary to be successfully included in the input set of an advanced mode Closure compilation.
 
@@ -74,11 +72,11 @@ I suspect there is no silver bullet that automatically generates externs from an
 
 ### Putting things into perspective
 
-As I mentioned earlier, people don't typically consider Closure unless they have heaps and heaps of JS in their projects that would take an unacceptable amount of time to deliver to clients uncompressed. For what it's worth, I only know of three organizations using Closure in production: Google, Yelp, and Medium. Maybe things were different in the past, but my guess is that most JS developers in 2016 do not use Closure at work or for fun.
+As I mentioned earlier, people don't typically consider Closure unless they have heaps and heaps of JS in their projects that would take an unacceptable amount of time to deliver to clients uncompressed. My guess is that most JS developers in 2016 do not use Closure at work or for fun.
 
-The first time I heard about Closure was when a few colleagues were discussing why it wasn't a good fit for JS at Yelp. I can't speak to how Closure is received at other organizations. Based purely on my impressions, it seems Closure is a necessary evil if you need that degree of JS compression.
+The first time I heard about Closure was when a few colleagues were discussing why it wasn't a good fit for JS at Yelp. I can't speak to how Closure is received at other organizations, but based purely on my impressions, it seems Closure is a necessary evil if you need that degree of JS compression.
 
-When I say necesary evil, I'm referring to the specific flavor of JS you need to write (not including externs) to be advanced-mode-compilable. However, I'm sure some people find the type annotations and dependency system an *advantage* over writing vanilla ES5. Personally, I find Javascript and all its permutations (ES5, ES6, Closure) painfully confusing so I've adopted alternatives like [Elm](http://elm-lang.org/) and [Clojurescript](http://clojurescript.org/).
+When I say necesary evil, I'm referring to the specific flavor of JS you need to write (not even including externs) to be advanced-mode-compilable. However, I'm sure some people find the type annotations and Closure dependency system an *advantage* over writing vanilla ES5. Personally, I find Javascript and all its permutations (ES5, ES6, Closure) confusing so I've adopted alternatives like [Elm](http://elm-lang.org/) and [Clojurescript](http://clojurescript.org/).
 
 ### Clojurescript and Closure
 I've referenced Clojurescript multiple times in this post, so for the unacquainted, Clojurescript is a [Clojure](http://clojure.org/) dialect that compiles to Javascript.
