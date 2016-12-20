@@ -12,6 +12,8 @@ Currently, QuickCheck implementations exist for [many languages](http://hypothes
 ### The function I'll be testing
 I am testing my implementation of function that simplifies a list of possibly redundant time intervals. A time interval will be modeled as a 2-tuple of `Int`s. The idea is that the function takes a list of time intervals representing when a business is open - for example, `[(1, 5), (5, 8)]`, and reduces it to its minimal representation - in this case, `[(1, 8)]`.
 
+Click [here](https://github.com/dianjin/fun-with-quickcheck) for the code.
+
 ### Coming up with properties
 *Disclaimer: I don't understand Haskell enough to give a formal definition of what's going on, so I'm mainly showing examples.*
 
